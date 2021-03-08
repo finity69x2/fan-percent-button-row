@@ -39,9 +39,9 @@ Then to use this in a card place the following in your entity card:
 | isOnMedColor | String | No | '#43A047' | Sets the color of the 'Med' button if fan is on medium percent speed  |
 | isOnHiColor | String | No | '#43A047' | Sets the color of the 'Hi' button if fan is on high percent speed |
 | buttonInactiveColor | String | No | '#759aaa' | Sets the color of the the buttons if that selection is not "active" |
-| lowPercent | Integer | No | 33 | Sets the speed percentage level for the "Low" button |
-| medPercent | Integer | No | 66 | Sets the speed percentage level for the "Med" button  |
-| hiPercent | Integer | No | 99 | Sets the speed level for the "High" button (max 100) |
+| lowPercentage | Integer | No | 33 | Sets the speed percentage level for the "Low" button |
+| medPercentage | Integer | No | 66 | Sets the speed percentage level for the "Med" button  |
+| hiPercentage | Integer | No | 99 | Sets the speed level for the "High" button (max 100) |
 | customOffText | String | No | 'OFF' | Sets the text of the "off" button |
 | customLowText | String | No | 'LOW' | Sets the text of the "low" speed button |
 | customMedText | String | No | 'MED' | Sets the text of the "medium" speed button |
@@ -71,9 +71,9 @@ If the speed percantage is changed via any other means (slider, service call, et
             name: Fan Default Custom Theme
             customTheme: true
             customSetpoints: true
-            lowPercent: 30
-            medPercent: 60
-            hiPercent: 90
+            lowPercentage: 30
+            medPercentage: 60
+            hiPercentage: 90
         ## USE THIS CONFIG TO USE A 'CUSTOMZED' CUSTOM THEME
           - entity: fan.hall_fan
             type: custom:fan-percent-button-row
