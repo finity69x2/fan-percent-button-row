@@ -7,21 +7,21 @@ class CustomFanPercentRow extends Polymer.Element {
 				:host {
 					line-height: inherit;
 				}
-				.brightness {
-				min-width: 30px;
-				max-width: 30px;
-				height: 30px;
-				margin-left: 2px;
-				margin-right: 2px;
-				background-color: #759aaa;
-				border: 1px solid lightgrey; 
-				border-radius: 4px;
-				font-size: 10px !important;
-				color: inherit;
-				text-align: center;
-				float: right !important;
-				padding: 1px;
-				cursor: pointer;
+				.percentage {
+					min-width: 30px;
+					max-width: 30px;
+					height: 30px;
+					margin-left: 2px;
+					margin-right: 2px;
+					background-color: #759aaa;
+					border: 1px solid lightgrey; 
+					border-radius: 4px;
+					font-size: 10px !important;
+					color: inherit;
+					text-align: center;
+					float: right !important;
+					padding: 1px;
+					cursor: pointer;
 				}
 				
 				</style>
@@ -98,7 +98,7 @@ class CustomFanPercentRow extends Polymer.Element {
 			offPercentage: 0,
 			lowPercentage: 33,
 			medPercentage: 66,
-			hiPercentage: 99,
+			hiPercentage: 100,
 			isOffColor: '#f44c09',
 			isOnLowColor: '#43A047',
 			isOnMedColor: '#43A047',
@@ -150,8 +150,8 @@ class CustomFanPercentRow extends Polymer.Element {
 			} else {
 				lowSetpoint =  parseInt(LowSetpoint);
 			}
-			if (parseInt(HiSetpoint) > 99) {	
-				hiSetpoint = 99;
+			if (parseInt(HiSetpoint) > 100) {	
+				hiSetpoint = 100;
 			} else {
 				hiSetpoint = parseInt(HiSetpoint);
 			}
@@ -172,11 +172,11 @@ class CustomFanPercentRow extends Polymer.Element {
 			medSetpoint = parseInt(MedSetpoint);
 			hiSetpoint = parseInt(HiSetpoint);
 			if (stateObj && stateObj.attributes) {
-				if (stateObj.state == 'on' && stateObj.attributes.percentage >= 26 && stateObj.attributes.percentage <= 50) {
+				if (stateObj.state == 'on' && stateObj.attributes.percentage >= 17 && stateObj.attributes.percentage <= 50) {
 					low = 'on';
 				} else if (stateObj.state == 'on' && stateObj.attributes.percentage >= 51 && stateObj.attributes.percentage <= 75) {
 					med = 'on';
-				} else if (stateObj.state == 'on' && stateObj.attributes.percentage >= 76 && stateObj.attributes.brightness <= 100) {
+				} else if (stateObj.state == 'on' && stateObj.attributes.percentage >= 76 && stateObj.attributes.percentage <= 100) {
 					high = 'on';
 				} else {
 					offstate = 'on';
@@ -302,7 +302,7 @@ class CustomFanPercentRow extends Polymer.Element {
 		e.stopPropagation();
 	}
 	
-	setPercent(e) {
+	setPercentage(e) {
 		const level = e.currentTarget.getAttribute('name');
 		const param = {entity_id: this._config.entity};
 		if( level == 'off' ){
@@ -316,7 +316,7 @@ class CustomFanPercentRow extends Polymer.Element {
 			this.hass.callService('fan', 'set_percentage', param);
 		} else if (level == 'high') {
 			param.percentage = this._highSP;
-			this.hass.callService('light', 'set_percentage', param);
+			this.hass.callService('fan', 'set_percentage', param);
 		}
 	}
 }
