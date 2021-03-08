@@ -2,6 +2,8 @@ Changes:
 
 Provides a means to program 3 preset speed percentage settings for fans selectable from a Lovelace button row. 
 
+## NOTE: You must be on Home Assistant V2021.3.X or higher to use this plug-in
+
 This element is completely theme-able to provide a match to the "fan-control-entity-row" to provide a consistent look for the different elements in your Lovelace frontend
 
 <b>Configuration Examples:</b>
