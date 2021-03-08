@@ -1,6 +1,8 @@
 # Fan Percent Button Row
 Provides a means to program 3 preset speed percentage settings for fans selectable from a Lovelace button row.
 
+## NOTE: You must be on Home Assistant V2021.3.X or higher to use this plug-in
+
 Installation:
 
 The easiest way to install this is to use the Home Assistant Community Store (HACS) in Home Assistant.
