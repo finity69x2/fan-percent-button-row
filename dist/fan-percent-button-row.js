@@ -145,8 +145,8 @@ class CustomFanPercentRow extends Polymer.Element {
 		if (custSetpoint) {
 			offSetpoint = parseInt(OffSetpoint);
 			medSetpoint = parseInt(MedSetpoint);
-			if (parseInt(LowSetpoint) < 1) {
-				lowSetpoint = 1;
+			if (parseInt(LowSetpoint) < 10) {
+				lowSetpoint = 10;
 			} else {
 				lowSetpoint =  parseInt(LowSetpoint);
 			}
