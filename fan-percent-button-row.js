@@ -1,4 +1,4 @@
-class CustomLightBrightnessRow extends Polymer.Element {
+class CustomFanPercentRow extends Polymer.Element {
 
 	static get template() {
 		return Polymer.html`
@@ -28,28 +28,28 @@ class CustomLightBrightnessRow extends Polymer.Element {
 					<hui-generic-entity-row hass="[[hass]]" config="[[_config]]">
 						<div class='horizontal justified layout' on-click="stopPropagation">
 							<button
-								class='brightness'
+								class='percentage'
 								style='[[_leftColor]]'
 								toggles name="[[_leftName]]"
-								on-click='setBrightness'
+								on-click='setPercentage'
 								disabled='[[_leftState]]'>[[_leftText]]</button>
 							<button
-								class='brightness'
+								class='percentage'
 								style='[[_midLeftColor]]'
 								toggles name="[[_midLeftName]]"
-								on-click='setBrightness'
+								on-click='setPercentage'
 								disabled='[[_midLeftState]]'>[[_midLeftText]]</button>
 							<button
-								class='brightness'
+								class='percentage'
 								style='[[_midRightColor]]'
 								toggles name="[[_midRightName]]"
-								on-click='setBrightness'
+								on-click='setPercentage'
 								disabled='[[_midRightState]]'>[[_midRightText]]</button>
 							<button
-								class='brightness'
+								class='percentage'
 								style='[[_rightColor]]'
 								toggles name="[[_rightName]]"
-								on-click='setBrightness'
+								on-click='setPercentage'
 								disabled='[[_rightState]]'>[[_rightText]]</button>
 						</div>
 					</hui-generic-entity-row>
@@ -64,6 +64,7 @@ class CustomLightBrightnessRow extends Polymer.Element {
 			},
 				_config: Object,
 				_stateObj: Object,
+				_offSP: Number,
 				_lowSP: Number,
 				_medSP: Number,
 				_highSP: Number,
@@ -94,9 +95,10 @@ class CustomLightBrightnessRow extends Polymer.Element {
 			customTheme: false,
 			customSetpoints: false,
 			reverseButtons: false,
-			lowBrightness: 43,
-			medBrightness: 128,
-			hiBrightness: 213,
+			offPercentage: 0,
+			lowPercentage: 33,
+			medPercentage: 66,
+			hiPercentage: 99,
 			isOffColor: '#f44c09',
 			isOnLowColor: '#43A047',
 			isOnMedColor: '#43A047',
@@ -122,15 +124,16 @@ class CustomLightBrightnessRow extends Polymer.Element {
 		const OnHiClr = config.isOnHiColor;
 		const OffClr = config.isOffColor;
 		const buttonOffClr = config.buttonInactiveColor;
-		const LowSetpoint = config.lowBrightness;
-		const MedSetpoint = config.medBrightness;
-		const HiSetpoint = config.hiBrightness;
+		const OffSetpoint = config.offPercentage;
+		const LowSetpoint = config.lowPercentage;
+		const MedSetpoint = config.medPercentage;
+		const HiSetpoint = config.hiPercentage;
 		const custOffTxt = config.customOffText;
 		const custLowTxt = config.customLowText;
 		const custMedTxt = config.customMedText;
 		const custHiTxt = config.customHiText;
 						
-		
+		let offSetpoint;
 		let lowSetpoint;
 		let medSetpoint;
 		let hiSetpoint;
@@ -140,38 +143,40 @@ class CustomLightBrightnessRow extends Polymer.Element {
 		let offstate;
 		
 		if (custSetpoint) {
+			offSetpoint = parseInt(OffSetpoint);
 			medSetpoint = parseInt(MedSetpoint);
 			if (parseInt(LowSetpoint) < 1) {
 				lowSetpoint = 1;
 			} else {
 				lowSetpoint =  parseInt(LowSetpoint);
 			}
-			if (parseInt(HiSetpoint) > 254) {	
-				hiSetpoint = 254;
+			if (parseInt(HiSetpoint) > 99) {	
+				hiSetpoint = 99;
 			} else {
 				hiSetpoint = parseInt(HiSetpoint);
 			}
 			if (stateObj && stateObj.attributes) {
-				if (stateObj.state == 'on' && stateObj.attributes.brightness >= 0 && stateObj.attributes.brightness <= ((medSetpoint + lowSetpoint)/2 ) ) {
+				if (stateObj.state == 'on' && stateObj.attributes.percentage >= ((lowSetpoint + offSetpoint)/2)) && stateObj.attributes.brightness <= ((medSetpoint + lowSetpoint)/2) ) {
 					low = 'on';
-				} else if (stateObj.state == 'on' && stateObj.attributes.brightness > ((medSetpoint + lowSetpoint)/2 ) && stateObj.attributes.brightness <= ((hiSetpoint + medSetpoint)/2) ) {
+				} else if (stateObj.state == 'on' && stateObj.attributes.percentage > ((medSetpoint + lowSetpoint)/2) && stateObj.attributes.percentage <= ((hiSetpoint + medSetpoint)/2) ) {
 					med = 'on';
-				} else if (stateObj.state == 'on' && stateObj.attributes.brightness > ((hiSetpoint + medSetpoint)/2) && stateObj.attributes.brightness <= 255) {
+				} else if (stateObj.state == 'on' && stateObj.attributes.percentage > ((hiSetpoint + medSetpoint)/2) && stateObj.attributes.percentage <= 100) {
 					high = 'on';
 				} else {
 					offstate = 'on';
 				}	
 			}
 		} else {
+			offSetpoint = parseInt(OffSetpoint);
 			lowSetpoint =  parseInt(LowSetpoint);
 			medSetpoint = parseInt(MedSetpoint);
 			hiSetpoint = parseInt(HiSetpoint);
 			if (stateObj && stateObj.attributes) {
-				if (stateObj.state == 'on' && stateObj.attributes.brightness >= 0 && stateObj.attributes.brightness <= 85) {
+				if (stateObj.state == 'on' && stateObj.attributes.percentage >= 26 && stateObj.attributes.percentage <= 50) {
 					low = 'on';
-				} else if (stateObj.state == 'on' && stateObj.attributes.brightness >= 86 && stateObj.attributes.brightness <= 170) {
+				} else if (stateObj.state == 'on' && stateObj.attributes.percentage >= 51 && stateObj.attributes.percentage <= 75) {
 					med = 'on';
-				} else if (stateObj.state == 'on' && stateObj.attributes.brightness >= 171 && stateObj.attributes.brightness <= 255) {
+				} else if (stateObj.state == 'on' && stateObj.attributes.percentage >= 76 && stateObj.attributes.brightness <= 100) {
 					high = 'on';
 				} else {
 					offstate = 'on';
@@ -250,6 +255,7 @@ class CustomLightBrightnessRow extends Polymer.Element {
 				_midLeftColor: lowcolor,
 				_midRightColor: medcolor,
 				_rightColor: hicolor,
+				_offSP: offSetpoint,
 				_lowSP: lowSetpoint,
 				_medSP: medSetpoint,
 				_highSP: hiSetpoint,
@@ -274,6 +280,7 @@ class CustomLightBrightnessRow extends Polymer.Element {
 				_midLeftColor: medcolor,
 				_midRightColor: lowcolor,
 				_rightColor: offcolor,
+				_offSP: offSetpoint,
 				_lowSP: lowSetpoint,
 				_medSP: medSetpoint,
 				_highSP: hiSetpoint,
@@ -295,22 +302,23 @@ class CustomLightBrightnessRow extends Polymer.Element {
 		e.stopPropagation();
 	}
 	
-	setBrightness(e) {
+	setPercent(e) {
 		const level = e.currentTarget.getAttribute('name');
 		const param = {entity_id: this._config.entity};
 		if( level == 'off' ){
-			this.hass.callService('light', 'turn_off', param);
+			param.percentage = this._offSP;
+			this.hass.callService('fan', 'set_percentage', param);
 		} else if (level == 'low') {
-			param.brightness = this._lowSP;
-			this.hass.callService('light', 'turn_on', param);
+			param.percentage = this._lowSP;
+			this.hass.callService('fan', 'set_percentage', param);
 		} else if (level == 'medium') {
-			param.brightness = this._medSP;
-			this.hass.callService('light', 'turn_on', param);
+			param.percentage = this._medSP;
+			this.hass.callService('fan', 'set_percentage', param);
 		} else if (level == 'high') {
-			param.brightness = this._highSP;
-			this.hass.callService('light', 'turn_on', param);
+			param.percentage = this._highSP;
+			this.hass.callService('light', 'set_percentage', param);
 		}
 	}
 }
 	
-customElements.define('light-brightness-preset-row', CustomLightBrightnessRow);
+customElements.define('fan-percent-button-row', CustomFanPercentRow);
