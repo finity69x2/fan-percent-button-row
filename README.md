@@ -12,7 +12,7 @@ Conversely, if you don't use HACS you can install it manually by performing the 
 
 Copy the fan-percent-button-row.js file to the appropriate folder in your Home Assistant Configuration directory (/config/www/).
 
-Place the following in your "resources" section in your lovelace configuration (updating the localation to where you placed the above file):
+Place the following in your "resources" section in your lovelace configuration (updating the location to where you placed the above file):
 
   ```
     - url: /local/fan-percent-button-row.js
