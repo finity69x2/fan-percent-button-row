@@ -39,7 +39,7 @@ Then to use this in a card place the following in your entity card:
 | isOnMedColor | String | No | '#43A047' | Sets the color of the 'Med' button if fan is on medium percent speed  |
 | isOnHiColor | String | No | '#43A047' | Sets the color of the 'Hi' button if fan is on high percent speed |
 | buttonInactiveColor | String | No | '#759aaa' | Sets the color of the the buttons if that selection is not "active" |
-| lowPercentage | Integer | No | 33 | Sets the speed percentage level for the "Low" button |
+| lowPercentage | Integer | No | 33 | Sets the speed percentage level for the "Low" button (min 10) |
 | medPercentage | Integer | No | 66 | Sets the speed percentage level for the "Med" button  |
 | hiPercentage | Integer | No | 99 | Sets the speed level for the "High" button (max 100) |
 | customOffText | String | No | 'OFF' | Sets the text of the "off" button |
