@@ -48,10 +48,13 @@ Provides a means to program 3 preset speed percentage settings for fans selectab
 
 This is with the default Lovelace frontend theme set:
 
-
+![Default](images/fan_percent_default.jpg)
 
 This is with the "Slate" frontend theme set:
 
+![Slate](images/fan_percent_default_2.jpg)
 
+This is how this plugin looks with the plugin fully themed:
 
-This is how this plugin looks with the Light Preset control & Binary Button Rows:
+![Slate-Themed](images/fan_percent_themed.jpg)
+
