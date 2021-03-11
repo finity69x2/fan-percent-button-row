@@ -98,13 +98,13 @@ If the speed percantage is changed via any other means (slider, service call, et
 
 This is with the default Lovelace frontend theme set:
 
-![Default](fan_percent_default.jpg)
+![Default](images/fan_percent_default.jpg)
 
 This is with the "Slate" frontend theme set:
 
-![Slate](fan_percent_default_2.jpg)
+![Slate](images/fan_percent_default_2.jpg)
 
 This is how this plugin looks with the plugin fully themed:
 
-![Slate-Themed](fan_percent_themed.jpg)
+![Slate-Themed](images/fan_percent_themed.jpg)
 
