@@ -43,6 +43,8 @@ Provides a means to program 3 preset speed percentage settings for fans selectab
             customLowText: do
             customMedText: re
             customOffText: not
+            width: '15px'
+            height: '15px'
             
   ```
 
