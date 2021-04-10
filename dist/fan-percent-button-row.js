@@ -316,6 +316,7 @@ class CustomFanPercentRow extends Polymer.Element {
 		const level = e.currentTarget.getAttribute('name');
 		const param = {entity_id: this._config.entity};
 		if( level == 'off' ){
+			this.hass.callService('fan', 'turn_off', param);
 			param.percentage = this._offSP;
 			this.hass.callService('fan', 'set_percentage', param);
 		} else if (level == 'low') {
