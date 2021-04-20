@@ -32,13 +32,13 @@ class CustomFanPercentRow extends Polymer.Element {
 								disabled='[[_leftState]]'>[[_leftText]]</button>
 							<button
 								class='percentage'
-								style='[[_midLeftColor]];min-width:[[_width]];max-width:[[_width]];height:[[_height]]'
+								style='[[_midLeftColor]];min-width:[[_width]];max-width:[[_width]];height:[[_height]];[[_hideMidLeft]]'
 								toggles name="[[_midLeftName]]"
 								on-click='setPercentage'
 								disabled='[[_midLeftState]]'>[[_midLeftText]]</button>
 							<button
 								class='percentage'
-								style='[[_midRightColor]];min-width:[[_width]];max-width:[[_width]];height:[[_height]]'
+								style='[[_midRightColor]];min-width:[[_width]];max-width:[[_width]];height:[[_height]];[[_hideMidRight]]'
 								toggles name="[[_midRightName]]"
 								on-click='setPercentage'
 								disabled='[[_midRightState]]'>[[_midRightText]]</button>
@@ -79,6 +79,8 @@ class CustomFanPercentRow extends Polymer.Element {
 				_midLeftName: String,
 				_midRightName: String,
 				_rightName: String,
+				_hideMidLeft: String,
+				_hideMidRight: String,
 				_leftState: Boolean,
 				_midLeftState: Boolean,
 				_midRightState: Boolean,
@@ -94,6 +96,7 @@ class CustomFanPercentRow extends Polymer.Element {
 			customTheme: false,
 			customSetpoints: false,
 			reverseButtons: false,
+			isTwoSpeedFan: false,
 			offPercentage: 0,
 			lowPercentage: 33,
 			medPercentage: 66,
@@ -120,6 +123,7 @@ class CustomFanPercentRow extends Polymer.Element {
 		const custTheme = config.customTheme;
 		const custSetpoint = config.customSetpoints;
 		const revButtons = config.reverseButtons;
+		const twoSpdFan = config.isTwoSpeedFan;
 		const buttonWidth = config.width;
 		const buttonHeight = config.height;
 		const OnLowClr = config.isOnLowColor;
@@ -148,8 +152,8 @@ class CustomFanPercentRow extends Polymer.Element {
 		if (custSetpoint) {
 			offSetpoint = parseInt(OffSetpoint);
 			medSetpoint = parseInt(MedSetpoint);
-			if (parseInt(LowSetpoint) < 10) {
-				lowSetpoint = 10;
+			if (parseInt(LowSetpoint) < 1) {
+				lowSetpoint = 1;
 			} else {
 				lowSetpoint =  parseInt(LowSetpoint);
 			}
@@ -250,6 +254,15 @@ class CustomFanPercentRow extends Polymer.Element {
 		let medname = 'medium'
 		let hiname = 'high'
 		
+		let hidemedium = 'display:block';
+		let nohide = 'display:block';
+		
+		if (twoSpdFan) {
+			hidemedium = 'display:none';
+		} else {
+			hidemedium = 'display:block';
+		}
+		
 		if (revButtons) {
 			this.setProperties({
 				_stateObj: stateObj,
@@ -275,7 +288,8 @@ class CustomFanPercentRow extends Polymer.Element {
 				_midLeftName: lowname,
 				_midRightName: medname,
 				_rightName: hiname,
-
+				_hideMidLeft: nohide,
+				_hideMidRight: hidemedium,
 			});
 		} else {
 			this.setProperties({
@@ -302,10 +316,10 @@ class CustomFanPercentRow extends Polymer.Element {
 				_midLeftName: medname,
 				_midRightName: lowname,
 				_rightName: offname,
+				_hideMidRight: nohide,
+				_hideMidLeft: hidemedium,
 			});
 		}
-				
-		
 	}
 
 	stopPropagation(e) {
@@ -333,3 +347,4 @@ class CustomFanPercentRow extends Polymer.Element {
 }
 	
 customElements.define('fan-percent-button-row', CustomFanPercentRow);
+
