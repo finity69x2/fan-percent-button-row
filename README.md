@@ -49,7 +49,7 @@ Then to use this in a card place the following in your entity card:
 | customLowText | String | No | 'LOW' | Sets the text of the "low" speed button |
 | customMedText | String | No | 'MED' | Sets the text of the "medium" speed button |
 | customHiText | String | No | 'HIGH' | Sets the text of the "High" speed button |
-
+| sendStateWithSpeed | Boolean | No | false | Calls the turn_on service for the fan before sending the speed, used if fan does not power on automatically when speed is set |
 
 The values for the colors can be any valid color string in "HEX", "RGB" or by color name.
 
