@@ -47,6 +47,7 @@ Then to use this in a card place the following in your entity card:
 | customSetpoints | Boolean | No | false | set to true to use custom speed percent setpoints |
 | reverseButtons | Boolean | No | false | set to true to reverse the button order |
 | isTwoSpeedFan | Boolean | No | false | Set to true to hide the middle percent button |
+| sendStateWithSpeed | Boolean | No | false | Used only for certain firmware that requires the State command be sent with the Speed command  |
 | width | String | No | 30px | A custom width for the buttons |
 | height | String | No | 30px | A custom height for the buttons |
 | isOffColor | String | No | '#f44c09' | Sets the color of the 'Off' button if fan is off |
