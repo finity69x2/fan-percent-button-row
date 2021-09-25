@@ -152,27 +152,21 @@ class CustomFanPercentRow extends Polymer.Element {
 		const custMedTxt = config.customMedText;
 		const custHiTxt = config.customHiText;
 						
-		let offSetpoint;
-		let lowSetpoint;
-		let medSetpoint;
-		let hiSetpoint;
+		let offSetpoint = (custSetpoint) ? parseInt(OffSetpoint) : 0;
+		let lowSetpoint = (custSetpoint) ? parseInt(LowSetpoint) : 33;
+		let medSetpoint = (custSetpoint) ? parseInt(MedSetpoint) : 66;
+		let hiSetpoint = (custSetpoint) ? parseInt(HiSetpoint) : 100;
 		let low;
 		let med;
 		let high;
 		let offstate;
 		
 		if (custSetpoint) {
-			offSetpoint = parseInt(OffSetpoint);
-			medSetpoint = parseInt(MedSetpoint);
-			if (parseInt(LowSetpoint) < 1) {
+			if (lowSetpoint < 1) {
 				lowSetpoint = 1;
-			} else {
-				lowSetpoint =  parseInt(LowSetpoint);
 			}
-			if (parseInt(HiSetpoint) > 100) {	
+			if (hiSetpoint > 100) {
 				hiSetpoint = 100;
-			} else {
-				hiSetpoint = parseInt(HiSetpoint);
 			}
 			if (stateObj && stateObj.attributes) {
 				if (stateObj.state == 'on' && stateObj.attributes.percentage > offSetpoint && stateObj.attributes.percentage <= ((medSetpoint + lowSetpoint)/2) ) {
@@ -186,10 +180,6 @@ class CustomFanPercentRow extends Polymer.Element {
 				}	
 			}
 		} else {
-			offSetpoint = parseInt(OffSetpoint);
-			lowSetpoint =  parseInt(LowSetpoint);
-			medSetpoint = parseInt(MedSetpoint);
-			hiSetpoint = parseInt(HiSetpoint);
 			if (stateObj && stateObj.attributes) {
 				if (stateObj.state == 'on' && stateObj.attributes.percentage >= 17 && stateObj.attributes.percentage <= 50) {
 					low = 'on';
