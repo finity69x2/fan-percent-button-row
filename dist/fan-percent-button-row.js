@@ -1,12 +1,12 @@
 window.customCards = window.customCards || [];
 window.customCards.push({
-  type: "fan-percent-button-row-2",
-  name: "fan percent button row-2",
+  type: "fan-percent-button-row",
+  name: "fan percent button row",
   description: "A plugin to display your fan controls in a button row.",
   preview: false,
 });
 
-class CustomFanPercentRow2 extends Polymer.Element {
+class CustomFanPercentRow extends Polymer.Element {
 
 	static get template() {
 		return Polymer.html`
@@ -367,5 +367,5 @@ class CustomFanPercentRow2 extends Polymer.Element {
 	}
 }
 	
-customElements.define('fan-percent-button-row-2', CustomFanPercentRow2);
+customElements.define('fan-percent-button-row', CustomFanPercentRow);
 
