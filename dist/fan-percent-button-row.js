@@ -251,25 +251,27 @@ class CustomFanPercentRow extends LitElement {
 				offcolor = 'background-color:' + buttonOffClr;
 			}
 		} else {
+			const styleOn = 'background-color: var(--ha-switch-checked-background-color, var(--ha-color-fill-primary-normal-resting)); border-color: var(--ha-switch-checked-border-color, var(--ha-color-border-primary-loud))';
+			const styleOff = 'background-color: var(--ha-switch-background-color, var(--ha-color-fill-disabled-quiet-resting)); border-color: var(--ha-switch-border-color, var(--ha-color-border-neutral-normal))';
 			if (low == 'on') {
-				lowcolor = 'background-color: var(--switch-checked-color)';
+				lowcolor = styleOn;
 			} else {
-				lowcolor = 'background-color: var(--switch-unchecked-color)';
+				lowcolor = styleOff;
 			}
 			if (med == 'on') {
-				medcolor = 'background-color: var(--switch-checked-color)';
+				medcolor = styleOn;
 			} else {
-				medcolor = 'background-color: var(--switch-unchecked-color)';
+				medcolor = styleOff;
 			}
 			if (high == 'on') {
-				hicolor = 'background-color: var(--switch-checked-color)';
+				hicolor = styleOn;
 			} else {
-				hicolor = 'background-color: var(--switch-unchecked-color)';
+				hicolor = styleOff;
 			}
 			if (offstate == 'on') {
-				offcolor = 'background-color: var(--switch-checked-color)';
+				offcolor = styleOn;
 			} else {
-				offcolor = 'background-color: var(--switch-unchecked-color)';
+				offcolor = styleOff;
 			}
 		}
 
